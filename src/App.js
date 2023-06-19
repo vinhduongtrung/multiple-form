@@ -1,4 +1,4 @@
-import { Card, Cascader, Col, Collapse, Input, Row, Steps } from "antd";
+import { Button, Card, Cascader, Col, Collapse, Input, Row, Steps } from "antd";
 import TextArea from "antd/es/input/TextArea";
 // import Axios from "axios";
 import { useState } from "react";
@@ -8,7 +8,7 @@ function App() {
   //     .then((res) => console.log(res.data))
   //     .catch((err) => console.log(err));
   // }, []);
-  const  [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0);
   const onChange = (key) => {
     setCurrent(key)
   }
@@ -18,7 +18,7 @@ function App() {
         <Steps direction="vertical" current={current} items={steps} />
       </Card>
       <br></br><br></br>
-      <Collapse items={items} defaultActiveKey={["1"]} onChange={onChange}/>
+      <Collapse items={items} defaultActiveKey={["1"]} onChange={onChange} />
     </div>
   );
 }
@@ -61,9 +61,9 @@ const items = [
     key: "1",
     label: "General information",
     children: <>
-                <Input addonAfter="0 | 255" placeholder="Product name" />
-                <Cascader options={options} placeholder="Please select category" style={{width:"100%"}}/> 
-              </>
+      <Input addonAfter="0 | 255" placeholder="Product name" />
+      <Cascader options={options} placeholder="Please select category" style={{ width: "100%" }} />
+    </>
   },
   {
     key: "2",
@@ -73,10 +73,11 @@ const items = [
   {
     key: "3",
     label: "Product variations",
-    children: <Row>
-                <Col span={12}>col-12</Col>
-                <Col span={12}>col-12</Col>
-              </Row>
+    children: <Row gutter={16}>
+      <Col span={12}><Input addonBefore="d" placeholder="price" /></Col>
+      <Col span={12}><Input addonBefore="sku" placeholder="" /></Col>
+      <Col span={24}><Button style={{ width: "100%" }} onClick={addVariation} type="dashed">+ Add Variations</Button></Col>
+    </Row>
   },
 ];
 const steps = [
@@ -90,5 +91,9 @@ const steps = [
     title: 'Product variations'
   },
 ];
+
+function addVariation() {
+  console.log("add variations");
+}
 
 export default App;
